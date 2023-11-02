@@ -11,10 +11,10 @@ services:
     security_opt:
       - no-new-privileges:true
     networks:
-       proxy:
+      proxy:
     ports:
       - 80:80
-      - 81:81  #for extermanl facing apps
+      - 81:81  #for external facing apps
       - 443:443
       - 444:444  #for external facing apps
     environment:
@@ -52,7 +52,6 @@ services:
       - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.mpengor.com"
    #enable API so traefik logs can be accessed by grafana and prometheus etc
       - "traefik.http.routers.traefik-secure.service=api@internal"
-
 
 networks:
   proxy:
