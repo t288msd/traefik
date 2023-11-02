@@ -20,6 +20,8 @@ services:
     environment:
       - CF_API_EMAIL=mdorahy@gmail.com
       - CF_DNS_API_TOKEN=02B0mWuNhRmaEXET2kVh7VvVAJtehl9VV_8ZPu7Q
+
+    # all errrs and debugging in ~/data/traefik/logs/traefik.log  <<<<-------------*****
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
