@@ -62,7 +62,8 @@ services:
       - "traefik.http.routers.bitwarden-secure.rule=Host(`bitwarden.mpengor.com`)"
       - "traefik.http.routers.bitwarden-secure.tls=true"
       - "traefik.http.routers.bitwarden-secure.service=bitwarden"
-      - "traefik.http.services.bitwarden.loadbalancer.server.port=8080" #port needs to be the internal prt of the containe>      - "traefik.docker.network=proxy"
+      - "traefik.http.services.bitwarden.loadbalancer.server.port=8080" #port needs to be the internal prt of the containe>      
+      - "traefik.docker.network=proxy"   #not sure if this line is needed 
 
 networks:
   proxy:
