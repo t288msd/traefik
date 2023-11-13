@@ -53,18 +53,6 @@ services:
    #enable API so traefik logs can be accessed by grafana and prometheus etc
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
-#for bitwarden which is on another vm
-      - "traefik.http.routers.bitwarden.entrypoints=http"
-      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.mpengor.com`)"
-      - "traefik.http.middlewares.bitwarden-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.bitwarden.middlewares=bitwarden-https-redirect"
-      - "traefik.http.routers.bitwarden-secure.entrypoints=https"
-      - "traefik.http.routers.bitwarden-secure.rule=Host(`bitwarden.mpengor.com`)"
-      - "traefik.http.routers.bitwarden-secure.tls=true"
-      - "traefik.http.routers.bitwarden-secure.service=bitwarden"
-      - "traefik.http.services.bitwarden.loadbalancer.server.port=8080" #port needs to be the internal prt of the containe>      
-      - "traefik.docker.network=proxy"   #not sure if this line is needed 
-
 networks:
   proxy:
     name: proxy
