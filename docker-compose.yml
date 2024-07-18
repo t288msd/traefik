@@ -12,16 +12,20 @@ services:
       - no-new-privileges:true
     networks:
       proxy:
+ 
     ports:
       - 80:80
       - 81:81  #for external facing apps
       - 443:443
       - 444:444  #for external facing apps
+      - 8080:8080 #for the dashboard
     environment:
       - CF_API_EMAIL=mdorahy@gmail.com
-      - CF_DNS_API_TOKEN=02B0mWuNhRmaEXET2kVh7VvVAJtehl9VV_8ZPu7Q
+  # old    - CF_DNS_API_TOKEN=02B0mWuNhRmaEXET2kVh7VvVAJtehl9VV_8ZPu7Q
+      - CF_DNS_API_TOKEN=oRxU49-GM2-lAhYRYyzH-6D9c3dY56AjupAR6ZsR
 
-    # all errrs and debugging in ~/data/traefik/logs/traefik.log  <<<<-------------*****
+  # all errrs and debugging in ~/data/traefik/logs/traefik.log  <<<<-------------*****
+
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -35,7 +39,7 @@ services:
       - "traefik.http.routers.traefik.rule=Host(`traefik-dashboard.mpengor.com`)"
  #next line uses the encoded password that is created using: echo $(htpasswd -nb "admin" "<unencodedpassword>") | sed -e s/\\$/\\$\\$/g
 # this will generate an encoded password that is shown below ($$....). When logging into the traffic dashboard, use admin/unencodedpassword
-      - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$bt7yERO9$$acNVuNIqxlJ0BeQToz9m/1"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$Cbm9JAJX$$YeiSAnaZKE.Fo.GcLJ0gN."
       #nxet 3 line automatic redirecton from http to https
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
